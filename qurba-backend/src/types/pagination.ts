@@ -1,11 +1,11 @@
 export type Pagination = {
 	limit: number;
 	skip: number;
-	search?: {
+	search: {
 		field: string,
-		value: string | number
+		value: any
 	}[],
-	sort?: {
+	sort: {
 		field: string,
 		value: "asc" | "desc"
 	}

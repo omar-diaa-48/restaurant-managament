@@ -12,6 +12,7 @@ class CuisineController {
 	}
 
 	async listAll(req: Request, res: Response): Promise<void> {
+		console.log(req.pagination);
 		const data = await this.service.listAll();
 		res.status(200).send(formatResponse(data, "GET", 200));
 	}
