@@ -2,6 +2,8 @@ import cors from "cors";
 import express from "express";
 import * as swaggerUi from 'swagger-ui-express';
 import error from "./middlewares/error.middleware";
+import appHealthRouter from "./modules/app-health/app-health.routes";
+import restaurantRouter from "./modules/restaurants/restaurant.routes";
 
 const swaggerDocument = require('./swagger.json');
 
@@ -35,6 +37,9 @@ class Server {
 				}
 			})
 		);
+
+		this.app.use('/', appHealthRouter);
+		this.app.use('/restaurants', restaurantRouter);
 
 		// use if the route is not found
 		this.app.use('*', (req, res) => {
