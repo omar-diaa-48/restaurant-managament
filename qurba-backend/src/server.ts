@@ -22,6 +22,8 @@ class Server {
 	private configureMiddlewares() {
 		//parse all requests middleware
 		this.app.use(express.json())
+		//parse requests that looks into content type
+		this.app.use(express.urlencoded({ extended: true }));
 		//allow cors
 		this.app.use(cors())
 	}

@@ -4,10 +4,11 @@ import app from './server';
 
 dotenv.config();
 const PORT = process.env.PORT;
+const DB_URL = process.env.DB_URL;
 
-mongoose.connect(process.env.DB_URL!, () => {
-	console.log("MongoDB connected");
-})
+mongoose.connect(DB_URL!)
+mongoose.connection.on('connected', () => console.log('MongoDB Connected'));
+mongoose.connection.on('error', () => console.log('MongoDB failed to connect'))
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);

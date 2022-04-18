@@ -1,9 +1,9 @@
-import Cuisine from "./Cuisine.model";
-import Restaurant from "./Restaurant.model";
-import User from "./User.model";
+import Cuisine from "./cuisine.model";
+import Restaurant from "./restaurant.model";
+import User from "./user.model";
 
-export default {
+export {
 	User,
 	Cuisine,
 	Restaurant
-}
+};

@@ -1,6 +1,6 @@
-import { model, Schema } from 'mongoose';
+import { Document, model, Schema } from 'mongoose';
 
-interface IRestaurant {
+interface IRestaurant extends Document {
 	name: string;
 	slug: string;
 	cuisine: any;
