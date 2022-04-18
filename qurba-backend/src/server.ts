@@ -2,12 +2,15 @@ import cors from "cors";
 import express from "express";
 import * as swaggerUi from 'swagger-ui-express';
 import error from "./middlewares/error.middleware";
+// routers
 import appHealthRouter from "./modules/app-health/app-health.routes";
 import cuisineRouter from "./modules/cuisines/cuisine.routes";
 import restaurantRouter from "./modules/restaurants/restaurant.routes";
+import userRouter from "./modules/users/user.routes";
+
+
 
 const swaggerDocument = require('./swagger.json');
-
 
 // create a server class
 class Server {
@@ -44,6 +47,7 @@ class Server {
 		);
 
 		this.app.use('/', appHealthRouter);
+		this.app.use('/users', userRouter);
 		this.app.use('/restaurants', restaurantRouter);
 		this.app.use('/cuisines', cuisineRouter);
 
