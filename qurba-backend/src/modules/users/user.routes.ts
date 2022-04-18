@@ -7,4 +7,8 @@ const userController: UserController = new UserController(User);
 
 userRouter.post('/', userController.addOne)
 
+userRouter.route('/:id/restaurants')
+	.post(userController.addRestaurant)
+	.delete(userController.removeRestaurant)
+
 export default userRouter;

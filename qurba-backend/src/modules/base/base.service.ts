@@ -24,7 +24,7 @@ export default class BaseService {
 	 * @param {string} id record id.
 	 * @return {any} The record if any.
 	 */
-	async findById(id: string, populatedPaths: string[] = []): Promise<Document[]> {
+	async findById(id: string, populatedPaths: string[] = []): Promise<Document> {
 		return this.model.findById(id).populate(populatedPaths).exec()
 	}
 

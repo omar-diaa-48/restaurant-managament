@@ -14,6 +14,10 @@
 		{
 			"name": "Restaurants",
 			"description": "restaurant operations"
+		},
+		{
+			"name": "Users",
+			"description": "user operations"
 		}
 	],
 	"paths": {
@@ -60,6 +64,72 @@
 					}
 				}
 			}
+		},
+		"/users": {
+			"post": {
+				"tags": [
+					"Users"
+				],
+				"summary": "Add a user",
+				"operationId": "addOneUser",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/RequestBody"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"$ref": "#/components/schemas/SuccessResponse"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/users/{id}/restaurants": {
+			"post": {
+				"tags": [
+					"Users"
+				],
+				"summary": "Add a restaurant to use favorites",
+				"operationId": "addOneUserRestaurant",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/RequestBody"
+							}
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"$ref": "#/components/schemas/SuccessResponse"
+							}
+						}
+					}
+				}
+			}
 		}
 	},
 	"components": {
@@ -80,6 +150,14 @@
 						"type": "string"
 					},
 					"message": {
+						"type": "string"
+					}
+				}
+			},
+			"RequestBody": {
+				"type": "object",
+				"properties": {
+					"property": {
 						"type": "string"
 					}
 				}
