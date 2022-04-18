@@ -28,7 +28,7 @@ class UserController {
 
 	async removeRestaurant(req: Request, res: Response): Promise<void> {
 		const userId = req.params.id
-		const restaurantId = req.body.restaurantId
+		const restaurantId = req.params.restaurantId
 		const data = await this.service.removeRestaurant(userId, restaurantId);
 		res.status(200).send(formatResponse(data, GLOBALS.ACTIONS.DELETE));
 	}
