@@ -18,7 +18,7 @@ class RestaurantController {
 
 	async findById(req: Request, res: Response): Promise<void> {
 		const id = req.params.id
-		const data = await this.service.findById(id);
+		const data = await this.service.findById(id, ["cuisine"]);
 		res.status(200).send(formatResponse(data, "GET", 200));
 	}
 
