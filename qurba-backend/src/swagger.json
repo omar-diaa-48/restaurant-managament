@@ -16,6 +16,48 @@
 			"description": "restaurant operations"
 		}
 	],
-	"paths": {},
-	"components": {}
+	"paths": {
+		"/restaurants": {
+			"get": {
+				"tags": [
+					"Restaurants"
+				],
+				"operationId": "RestaurantsOperations",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"$ref": "#/components/schemas/SuccessResponse"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"SuccessResponse": {
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "array"
+					},
+					"count": {
+						"type": "number"
+					},
+					"code": {
+						"type": "number"
+					},
+					"action": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	}
 }
