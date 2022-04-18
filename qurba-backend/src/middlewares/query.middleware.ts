@@ -52,10 +52,10 @@ const query = (req: Request, res: Response, next: NextFunction) => {
 			// case of any other model attribute check
 			else {
 				const value = req.query[field]
-				pagination.search.push({
-					field,
-					value
-				})
+				pagination.search = {
+					...pagination.search,
+					[field]: value
+				}
 			}
 
 		});

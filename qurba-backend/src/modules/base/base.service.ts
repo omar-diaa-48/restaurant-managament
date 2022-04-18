@@ -1,4 +1,6 @@
 import { Document, Model } from "mongoose";
+import { Pagination } from "../../types/pagination";
+import { formatPagination } from "../../utils/formatters";
 
 export default class BaseService {
 	model: Model<any>;
@@ -11,8 +13,10 @@ export default class BaseService {
 	 * @param {object} pagination pagination.
 	 * @return {any[]} The result of the query.
 	 */
-	async listAll(): Promise<Document[]> {
-		return this.model.find().exec()
+	async listAll(pagination?: Pagination): Promise<Document[]> {
+		const usedPagination = formatPagination(pagination!);
+		console.log(usedPagination.search);
+		return this.model.find({ ...usedPagination.search }).skip(usedPagination.skip).limit(usedPagination.limit).exec()
 	}
 
 	/**
