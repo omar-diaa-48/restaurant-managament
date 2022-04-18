@@ -1,0 +1,14 @@
+[{
+  "_id": {
+    "$oid": "625dc5e7623b21c65dd288a6"
+  },
+  "name": "Fish&Chips",
+  "slug": "fish-and-chips",
+  "location": {
+    "lat": 32.31,
+    "lng": 31.67
+  },
+  "cuisine": {
+    "$oid": "625dc5696a33cd3ca1074b09"
+  }
+}]

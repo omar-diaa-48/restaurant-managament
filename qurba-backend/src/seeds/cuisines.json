@@ -1,0 +1,16 @@
+[
+	{
+		"_id": {
+			"$oid": "625dc5696a33cd3ca1074b09"
+		},
+		"name": "American",
+		"slug": "american"
+	},
+	{
+		"_id": {
+			"$oid": "625dc5696a33cd3ca1074b0a"
+		},
+		"name": "Asian",
+		"slug": "asian"
+	}
+]
