@@ -10,7 +10,7 @@ class UserController {
 
 		this.addOne = this.addOne.bind(this)
 		this.addRestaurant = this.addRestaurant.bind(this)
-		this.addRestaurant = this.addRestaurant.bind(this)
+		this.removeRestaurant = this.removeRestaurant.bind(this)
 	}
 
 	async addOne(req: Request, res: Response): Promise<void> {
@@ -28,7 +28,8 @@ class UserController {
 
 	async removeRestaurant(req: Request, res: Response): Promise<void> {
 		const userId = req.params.id
-		const data = await this.service.removeRestaurant(userId);
+		const restaurantId = req.body.restaurantId
+		const data = await this.service.removeRestaurant(userId, restaurantId);
 		res.status(200).send(formatResponse(data, GLOBALS.ACTIONS.DELETE));
 	}
 }

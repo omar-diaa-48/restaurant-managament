@@ -116,7 +116,40 @@
 						"name": "id",
 						"in": "path",
 						"required": true,
-						"type": "integer"
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"$ref": "#/components/schemas/SuccessResponse"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/users/{id}/restaurants/${restaurantId}": {
+			"delete": {
+				"tags": [
+					"Users"
+				],
+				"summary": "Remove a restaurant from user favorites",
+				"operationId": "removeOneUserRestaurant",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "restaurantId",
+						"in": "path",
+						"required": true,
+						"type": "string"
 					}
 				],
 				"responses": {

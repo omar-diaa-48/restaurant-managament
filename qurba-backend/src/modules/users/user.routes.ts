@@ -7,8 +7,8 @@ const userController: UserController = new UserController(User);
 
 userRouter.post('/', userController.addOne)
 
-userRouter.route('/:id/restaurants')
-	.post(userController.addRestaurant)
-	.delete(userController.removeRestaurant)
+userRouter.post('/:id/restaurants', userController.addRestaurant)
+
+userRouter.delete('/:id/restaurants/:restaurantId', userController.removeRestaurant)
 
 export default userRouter;

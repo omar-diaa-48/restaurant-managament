@@ -1,4 +1,5 @@
 import { Document, Model } from "mongoose";
+import AppError from "../../types/app-error";
 import { Pagination } from "../../types/pagination";
 import { formatPagination } from "../../utils/formatters";
 
@@ -38,10 +39,10 @@ export default class BaseService {
 	}
 
 	async updateOne(id: string | number | any, object: Object): Promise<any> {
-		throw new Error("Method not implemented");
+		throw new AppError("Method not implemented", 500);
 	}
 
 	async deleteOne(id: string | number | any): Promise<string> {
-		throw new Error("Method not implemented");
+		throw new AppError("Method not implemented", 500);
 	}
 }

@@ -9,7 +9,6 @@ const error = (err: Error, req: Request, res: Response, next: NextFunction) => {
 
 	if (process.env.NODE_ENV === "development") {
 		console.log({ err });
-		console.log({ stack: err.stack });
 	}
 
 	if (err instanceof SyntaxError) {
@@ -25,10 +24,23 @@ const error = (err: Error, req: Request, res: Response, next: NextFunction) => {
 		errorArr = error.errorArr;
 	}
 
-	res.status(statusCode).send({
+	if (statusCode === 500) {
+		error = new AppError('Something gone wrong with our server, please contact support', 500);
+	}
+
+	// setting error response
+	const errorResponse: {} = {
 		code: statusCode,
-		error: error.message
-	});
+		error: error.message,
+	};
+
+	// add errors array if exists
+	if (errorArr !== null) {
+		//@ts-ignore
+		errorResponse['errors'] = errorArr;
+	}
+
+	res.status(statusCode).send(errorResponse);
 };
 
 export default error;
