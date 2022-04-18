@@ -1,11 +1,12 @@
 export type ErrorResponse = {
-	error: string,
-	code: number,
+	error: string;
+	code: number;
 };
 
 export type SuccessResponse = {
-	data: any[],
-	count: number,
-	action: number,
-	code: number,
+	data: any[];
+	count: number;
+	action: string;
+	code: number;
+	message?: string;
 }
