@@ -7,6 +7,7 @@ const error = (err: Error, req: Request, res: Response, next: NextFunction) => {
 
 	if (process.env.NODE_ENV === "development") {
 		console.log({ err });
+		console.log({ stack: err.stack });
 	}
 
 	if (err instanceof SyntaxError) {
@@ -17,7 +18,7 @@ const error = (err: Error, req: Request, res: Response, next: NextFunction) => {
 		statusCode = 422;
 	}
 
-	res.status(statusCode).json({
+	res.status(statusCode).send({
 		code: statusCode,
 		error: error.message
 	});

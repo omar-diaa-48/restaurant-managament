@@ -3,6 +3,7 @@ import express from "express";
 import * as swaggerUi from 'swagger-ui-express';
 import error from "./middlewares/error.middleware";
 import appHealthRouter from "./modules/app-health/app-health.routes";
+import cuisineRouter from "./modules/cuisines/cuisine.routes";
 import restaurantRouter from "./modules/restaurants/restaurant.routes";
 
 const swaggerDocument = require('./swagger.json');
@@ -26,6 +27,8 @@ class Server {
 		this.app.use(express.urlencoded({ extended: true }));
 		//allow cors
 		this.app.use(cors())
+		//use public folder for any static files
+		this.app.use(express.static('public'))
 	}
 
 	private mountRoutes(): void {
@@ -42,11 +45,12 @@ class Server {
 
 		this.app.use('/', appHealthRouter);
 		this.app.use('/restaurants', restaurantRouter);
+		this.app.use('/cuisines', cuisineRouter);
 
 		// use if the route is not found
 		this.app.use('*', (req, res) => {
 			res.status(404).json({
-				message: 'API_NOT_FOUND',
+				message: 'API Not Found',
 				code: 404
 			});
 		});

@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { formatResponse } from "../../utils/formatters";
-import RestaurantService from "./restaurant.service";
+import CuisineService from "./cuisine.service";
 
-class RestaurantController {
-	service: RestaurantService;
+class CuisineController {
+	service: CuisineService;
 	constructor(model: any) {
-		this.service = new RestaurantService(model)
+		this.service = new CuisineService(model)
 
 		this.listAll = this.listAll.bind(this)
 		this.findById = this.findById.bind(this)
@@ -29,4 +29,4 @@ class RestaurantController {
 	}
 }
 
-export default RestaurantController;
+export default CuisineController;
