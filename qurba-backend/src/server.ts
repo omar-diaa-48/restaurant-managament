@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 
 // create a server class
@@ -6,6 +7,13 @@ class Server {
 
 	constructor() {
 		this.app = express();
+
+		this.configureMiddlewares();
+	}
+
+	private configureMiddlewares() {
+		this.app.use(express.json())
+		this.app.use(cors())
 	}
 }
 
