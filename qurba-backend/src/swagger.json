@@ -22,7 +22,33 @@
 				"tags": [
 					"Restaurants"
 				],
-				"operationId": "RestaurantsOperations",
+				"summary": "List all restaurants",
+				"operationId": "listRestaurants",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"$ref": "#/components/schemas/SuccessResponse"
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"Restaurants"
+				],
+				"summary": "Add a restaurant",
+				"operationId": "addOneRestaurant",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {}
+						}
+					}
+				},
 				"responses": {
 					"200": {
 						"description": "OK",
