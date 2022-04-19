@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import slugify from "slugify";
 import { formatResponse } from "../../utils/formatters";
 import { GLOBALS } from "../../utils/globals";
 import RestaurantService from "./restaurant.service";
@@ -28,8 +27,7 @@ class RestaurantController {
 
 	async addOne(req: Request, res: Response): Promise<void> {
 		const record = req.body
-		const slug = slugify(req.body.name, { lower: true })
-		const data = await this.service.addOne(record, { field: "slug", value: slug });
+		const data = await this.service.addOne(record);
 		res.status(200).send(formatResponse(data, GLOBALS.ACTIONS.POST));
 	}
 
