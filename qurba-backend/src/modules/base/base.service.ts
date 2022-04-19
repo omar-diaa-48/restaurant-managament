@@ -16,7 +16,6 @@ export default class BaseService {
 	 */
 	async listAll(pagination?: Pagination): Promise<Document[]> {
 		const usedPagination = formatPagination(pagination!);
-		console.log(usedPagination.search);
 		return this.model.find({ ...usedPagination.search }).skip(usedPagination.skip).limit(usedPagination.limit).exec()
 	}
 
@@ -34,8 +33,21 @@ export default class BaseService {
 	 * @param {object} object record initial data.
 	 * @return {any} The created record.
 	 */
-	async addOne(object: Object, ...args: any[]): Promise<any> {
-		return this.model.create({ ...object });
+	async addOne(object: Object, ...args: { field: string, value: any }[]): Promise<any> {
+		let addDto = {
+			...object
+		}
+
+		if (args && args.length > 0) {
+
+			args.forEach(element => {
+				const { field, value } = element;
+				//@ts-ignore
+				addDto[field] = value
+			});
+		}
+
+		return this.model.create({ ...addDto });
 	}
 
 	async updateOne(id: string | number | any, object: Object): Promise<any> {
