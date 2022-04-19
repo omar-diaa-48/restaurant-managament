@@ -12,6 +12,7 @@ class RestaurantController {
 		this.listAll = this.listAll.bind(this)
 		this.findById = this.findById.bind(this)
 		this.addOne = this.addOne.bind(this)
+		this.findNearest = this.findNearest.bind(this)
 	}
 
 	async listAll(req: Request, res: Response): Promise<void> {
@@ -30,6 +31,19 @@ class RestaurantController {
 		const slug = slugify(req.body.name, { lower: true })
 		const data = await this.service.addOne(record, { field: "slug", value: slug });
 		res.status(200).send(formatResponse(data, GLOBALS.ACTIONS.POST));
+	}
+
+	async findNearest(req: Request, res: Response): Promise<void> {
+		const lat = req.query.lat;
+		const lng = req.query.lng;
+
+		const coordinates = {
+			lat: Number(lat),
+			lng: Number(lng)
+		}
+
+		const data = await this.service.findNearest(coordinates)
+		res.status(200).send(formatResponse(data, GLOBALS.ACTIONS.GET));
 	}
 }
 

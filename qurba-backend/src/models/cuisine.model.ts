@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-interface ICuisine {
+export interface ICuisine {
 	name: string;
 	slug: string;
 }
