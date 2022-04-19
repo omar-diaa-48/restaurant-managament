@@ -1,24 +1,13 @@
 import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
-import { MongooseError } from "mongoose";
 import AppError from '../types/app-error';
 
 const error: ErrorRequestHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
 	let statusCode: number = 500;
-	let error: Error = err;
+	let error: any = err;
 	let errorArr: {}[] = [];
 
-	console.error("error");
-
 	if (process.env.NODE_ENV === "development") {
-		console.log({ err });
-	}
-
-	if (err instanceof SyntaxError) {
-		statusCode = 400;
-	}
-
-	else if (err instanceof MongooseError) {
-		statusCode = 422;
+		// console.log({ err });
 	}
 
 	if (error instanceof AppError) {

@@ -9,7 +9,6 @@ import restaurantRouter from "./modules/restaurants/restaurant.routes";
 import userRouter from "./modules/users/user.routes";
 
 
-
 const swaggerDocument = require('./swagger.json');
 
 // create a server class

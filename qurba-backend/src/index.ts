@@ -1,8 +1,10 @@
+require('express-async-errors');
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import app from './server';
 
 dotenv.config();
+
 const PORT = process.env.PORT;
 const DB_URL = process.env.DB_URL;
 
