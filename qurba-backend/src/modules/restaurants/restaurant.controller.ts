@@ -31,6 +31,10 @@ class RestaurantController {
 		res.status(200).send(formatResponse(data, GLOBALS.ACTIONS.POST));
 	}
 
+	/**
+	 * Finds the nearest restaurants to a specific location.
+	 * @return {any} The created record.
+	 */
 	async findNearest(req: Request, res: Response): Promise<void> {
 		const lat = req.query.lat;
 		const lng = req.query.lng;
@@ -40,7 +44,9 @@ class RestaurantController {
 			lng: Number(lng)
 		}
 
-		const data = await this.service.findNearest(coordinates)
+		const maxDistance = req.query.maxDistance ? Number(req.query.maxDistance) : 25;
+
+		const data = await this.service.findNearest(coordinates, maxDistance)
 		res.status(200).send(formatResponse(data, GLOBALS.ACTIONS.GET));
 	}
 }

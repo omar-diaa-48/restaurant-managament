@@ -65,6 +65,45 @@
 				}
 			}
 		},
+		"/restaurants/nearest": {
+			"get": {
+				"tags": [
+					"Restaurants"
+				],
+				"summary": "List all the nearest restaurants",
+				"operationId": "listNearestRestaurants",
+				"parameters": [
+					{
+						"in": "query",
+						"name": "lng",
+						"type": "number",
+						"description": "coordinates in y direction"
+					},
+					{
+						"in": "query",
+						"name": "lat",
+						"type": "number",
+						"description": "coordinates in x direction"
+					},
+					{
+						"in": "query",
+						"name": "maxDistance",
+						"type": "number",
+						"description": "Maximum distance"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"$ref": "#/components/schemas/SuccessResponse"
+							}
+						}
+					}
+				}
+			}
+		},
 		"/users": {
 			"post": {
 				"tags": [
