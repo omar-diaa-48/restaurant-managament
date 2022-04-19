@@ -49,7 +49,9 @@
 					"required": true,
 					"content": {
 						"application/json": {
-							"schema": {}
+							"schema": {
+								"$ref": "#/components/schemas/RequestBody"
+							}
 						}
 					}
 				},
@@ -157,6 +159,14 @@
 				],
 				"summary": "Get user by id",
 				"operationId": "getUserById",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
 				"responses": {
 					"200": {
 						"description": "OK",
@@ -176,6 +186,14 @@
 				],
 				"summary": "List all user favorite restaurants",
 				"operationId": "listUserFavRestaurants",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
 				"responses": {
 					"200": {
 						"description": "OK",
@@ -193,6 +211,14 @@
 				],
 				"summary": "Add a restaurant to use favorites",
 				"operationId": "addOneUserRestaurant",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -203,14 +229,6 @@
 						}
 					}
 				},
-				"parameters": [
-					{
-						"name": "id",
-						"in": "path",
-						"required": true,
-						"type": "string"
-					}
-				],
 				"responses": {
 					"200": {
 						"description": "OK",
