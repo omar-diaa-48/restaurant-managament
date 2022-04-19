@@ -5,8 +5,8 @@ interface IRestaurant extends Document {
 	slug: string;
 	cuisine: any;
 	location: {
-		lat: number,
-		lng: number
+		type: string,
+		coordinates: number[]
 	}
 }
 
@@ -14,6 +14,17 @@ const restaurantSchema = new Schema<IRestaurant>({
 	name: { type: String, required: true, unique: true },
 	slug: { type: String, required: true, unique: true },
 	cuisine: { type: Schema.Types.ObjectId, ref: 'Cuisine', required: true },
+	location: {
+		type: {
+			type: String,
+			enum: ['Point'],
+			required: true
+		},
+		coordinates: {
+			type: [Number],
+			required: true
+		}
+	}
 });
 
 const Restaurant = model<IRestaurant>('Restaurant', restaurantSchema);

@@ -10,6 +10,7 @@ class RestaurantController {
 
 		this.listAll = this.listAll.bind(this)
 		this.findById = this.findById.bind(this)
+		this.addOne = this.addOne.bind(this)
 	}
 
 	async listAll(req: Request, res: Response): Promise<void> {

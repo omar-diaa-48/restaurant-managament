@@ -7,6 +7,9 @@ const restaurantRouter: Router = Router();
 const restaurantController: RestaurantController = new RestaurantController(Restaurant);
 
 restaurantRouter.get('/:id', restaurantController.findById)
-restaurantRouter.get('/', query, restaurantController.listAll)
+
+restaurantRouter.route('/')
+	.get(query, restaurantController.listAll)
+	.post(restaurantController.addOne)
 
 export default restaurantRouter;
