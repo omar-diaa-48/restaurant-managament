@@ -1,11 +1,13 @@
-import { NextFunction, Request, Response } from 'express';
+import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
 import { MongooseError } from "mongoose";
 import AppError from '../types/app-error';
 
-const error = (err: Error, req: Request, res: Response, next: NextFunction) => {
+const error: ErrorRequestHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
 	let statusCode: number = 500;
 	let error: Error = err;
 	let errorArr: {}[] = [];
+
+	console.error("error");
 
 	if (process.env.NODE_ENV === "development") {
 		console.log({ err });

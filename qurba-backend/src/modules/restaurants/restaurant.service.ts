@@ -12,7 +12,7 @@ export default class RestaurantService extends BaseService {
 		this.restaurantModel = model;
 	}
 
-	async findNearest(location: { lat: number, lng: number }, maxDistanceInKm: number): Promise<any> {
+	findNearest = async (location: { lat: number, lng: number }, maxDistanceInKm: number): Promise<any> => {
 		// find the nearest then use limit and skip queries
 		const near = await GeoObject.aggregate([
 			{
@@ -43,7 +43,7 @@ export default class RestaurantService extends BaseService {
 		return restaurants;
 	}
 
-	async addOne(body: AddRestaurantDTO): Promise<any> {
+	addRestaurant = async (body: AddRestaurantDTO): Promise<any> => {
 		const {
 			name, cuisine, location
 		} = body;

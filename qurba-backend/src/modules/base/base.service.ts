@@ -14,7 +14,7 @@ export default class BaseService {
 	 * @param {object} pagination pagination.
 	 * @return {any[]} The result of the query.
 	 */
-	async listAll(pagination?: Pagination): Promise<Document[]> {
+	listAll = async (pagination?: Pagination): Promise<Document[]> => {
 		const usedPagination = formatPagination(pagination!);
 		return this.model.find({ ...usedPagination.search }).skip(usedPagination.skip).limit(usedPagination.limit).exec()
 	}
@@ -24,7 +24,7 @@ export default class BaseService {
 	 * @param {string} id record id.
 	 * @return {any} The record if any.
 	 */
-	async findById(id: string, populatedPaths: string[] = []): Promise<Document> {
+	findById = async (id: string, populatedPaths: string[] = []): Promise<Document> => {
 		return this.model.findById(id).populate(populatedPaths).exec()
 	}
 
@@ -33,7 +33,7 @@ export default class BaseService {
 	 * @param {object} object record initial data.
 	 * @return {any} The created record.
 	 */
-	async addOne(object: Object, ...args: { field: string, value: any }[]): Promise<any> {
+	addOne = async (object: Object, ...args: { field: string, value: any }[]): Promise<any> => {
 		let addDto = {
 			...object
 		}
@@ -51,11 +51,11 @@ export default class BaseService {
 		return this.model.create({ ...addDto });
 	}
 
-	async updateOne(id: string | number | any, object: Object): Promise<any> {
+	updateOne = async (id: string | number | any, object: Object): Promise<any> => {
 		throw new AppError("Method not implemented", 500);
 	}
 
-	async deleteOne(id: string | number | any): Promise<string> {
+	deleteOne = async (id: string | number | any): Promise<string> => {
 		throw new AppError("Method not implemented", 500);
 	}
 }
