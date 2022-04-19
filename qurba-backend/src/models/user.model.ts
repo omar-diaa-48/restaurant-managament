@@ -5,7 +5,7 @@ export interface IUser {
 	lastName: string;
 	age: number;
 	email: string;
-	favoriteRestaurants?: any[];
+	favoriteRestaurants: any[];
 }
 
 const userSchema = new Schema<IUser>({

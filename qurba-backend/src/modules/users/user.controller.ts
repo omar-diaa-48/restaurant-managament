@@ -8,9 +8,22 @@ class UserController {
 	constructor(model: any) {
 		this.service = new UserService(model)
 
+		this.listAll = this.listAll.bind(this)
+		this.findById = this.findById.bind(this)
 		this.addOne = this.addOne.bind(this)
 		this.addRestaurant = this.addRestaurant.bind(this)
 		this.removeRestaurant = this.removeRestaurant.bind(this)
+	}
+
+	async listAll(req: Request, res: Response): Promise<void> {
+		const data = await this.service.listAll(req.pagination);
+		res.status(200).send(formatResponse(data, GLOBALS.ACTIONS.GET));
+	}
+
+	async findById(req: Request, res: Response): Promise<void> {
+		const id = req.params.id
+		const data = await this.service.findById(id, ["favoriteRestaurants"]);
+		res.status(200).send(formatResponse(data, GLOBALS.ACTIONS.GET));
 	}
 
 	async addOne(req: Request, res: Response): Promise<void> {

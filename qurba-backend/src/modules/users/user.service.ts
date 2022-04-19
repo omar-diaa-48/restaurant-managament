@@ -51,7 +51,7 @@ export default class UserService extends BaseService {
 			throw new AppError("User already favorited the restaurant", 400)
 		}
 
-		user.favoriteRestaurants = user.favoriteRestaurants?.filter(restaurant => restaurant.id !== restaurant.id)
+		user.favoriteRestaurants = [...user.favoriteRestaurants?.filter(restaurant => restaurant.id !== restaurant.id)]
 		await user.save();
 
 		return restaurant;

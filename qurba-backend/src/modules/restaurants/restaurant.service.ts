@@ -13,6 +13,7 @@ export default class RestaurantService extends BaseService {
 	}
 
 	async findNearest(location: { lat: number, lng: number }, maxDistanceInKm: number): Promise<any> {
+		// find the nearest then use limit and skip queries
 		const near = await GeoObject.aggregate([
 			{
 				$geoNear: {
@@ -33,6 +34,7 @@ export default class RestaurantService extends BaseService {
 			throw new AppError("Nothing near", 404)
 		}
 
+		// find the restaurants that match the points
 		const restaurants = await Promise.all(near.map(async (location) => {
 			const restaurant = await Restaurant.findOne({ location: location._id })
 			return restaurant;
@@ -48,6 +50,7 @@ export default class RestaurantService extends BaseService {
 
 		const slug = slugify(name, { lower: true })
 
+		// create restaurant location
 		const restaurantLocation = await GeoObject.create({
 			type: "Point",
 			coordinates: [location.lng, location.lat]

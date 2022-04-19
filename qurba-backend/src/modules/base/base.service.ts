@@ -40,6 +40,7 @@ export default class BaseService {
 
 		if (args && args.length > 0) {
 
+			// add extra fields if any
 			args.forEach(element => {
 				const { field, value } = element;
 				//@ts-ignore

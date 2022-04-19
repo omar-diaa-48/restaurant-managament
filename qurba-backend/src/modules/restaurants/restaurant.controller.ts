@@ -33,7 +33,7 @@ class RestaurantController {
 
 	/**
 	 * Finds the nearest restaurants to a specific location.
-	 * @return {any} The created record.
+	 * @return {any[]} nearest restaurants.
 	 */
 	async findNearest(req: Request, res: Response): Promise<void> {
 		const lat = req.query.lat;

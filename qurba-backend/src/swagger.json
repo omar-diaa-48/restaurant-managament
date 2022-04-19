@@ -105,6 +105,23 @@
 			}
 		},
 		"/users": {
+			"get": {
+				"tags": [
+					"Users"
+				],
+				"summary": "List all users",
+				"operationId": "listUsers",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"$ref": "#/components/schemas/SuccessResponse"
+							}
+						}
+					}
+				}
+			},
 			"post": {
 				"tags": [
 					"Users"
@@ -133,7 +150,43 @@
 				}
 			}
 		},
+		"/users/{id}": {
+			"get": {
+				"tags": [
+					"Users"
+				],
+				"summary": "Get user by id",
+				"operationId": "getUserById",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"$ref": "#/components/schemas/SuccessResponse"
+							}
+						}
+					}
+				}
+			}
+		},
 		"/users/{id}/restaurants": {
+			"get": {
+				"tags": [
+					"Users"
+				],
+				"summary": "List all user favorite restaurants",
+				"operationId": "listUserFavRestaurants",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"$ref": "#/components/schemas/SuccessResponse"
+							}
+						}
+					}
+				}
+			},
 			"post": {
 				"tags": [
 					"Users"
