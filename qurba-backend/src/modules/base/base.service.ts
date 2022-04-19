@@ -25,7 +25,13 @@ export default class BaseService {
 	 * @return {any} The record if any.
 	 */
 	findById = async (id: string, populatedPaths: string[] = []): Promise<Document> => {
-		return this.model.findById(id).populate(populatedPaths).exec()
+		const record = await this.model.findById(id).populate(populatedPaths).exec()
+
+		if (!record) {
+			throw new AppError(`Record with id ${id} not found`, 404);
+		}
+
+		return record;
 	}
 
 	/**

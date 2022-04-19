@@ -1,37 +1,30 @@
 import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
 import AppError from '../types/app-error';
 
-const error: ErrorRequestHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
-	let statusCode: number = 500;
-	let error: any = err;
+const error: ErrorRequestHandler = (err: unknown, req: Request, res: Response, next: NextFunction) => {
+	let code: number = 500;
+	let error: string = "Something gone wrong with our server, please contact support";
 	let errorArr: {}[] = [];
 
 	if (process.env.NODE_ENV === "development") {
 		// console.log({ err });
 	}
 
-	if (error instanceof AppError) {
-		statusCode = error.statusCode;
-		errorArr = error.errorArr;
-	}
-
-	if (statusCode === 500) {
-		error = new AppError('Something gone wrong with our server, please contact support', 500);
+	if (err instanceof AppError) {
+		console.log('AppError');
+		code = err.statusCode;
+		error = err.message;
+		errorArr = err.errorArr;
 	}
 
 	// setting error response
-	const errorResponse: {} = {
-		code: statusCode,
-		error: error.message,
+	const errorResponse: any = {
+		code,
+		error,
+		errors: errorArr
 	};
 
-	// add errors array if exists
-	if (errorArr !== null) {
-		//@ts-ignore
-		errorResponse['errors'] = errorArr;
-	}
-
-	res.status(statusCode).send(errorResponse);
+	res.status(code).send(errorResponse);
 };
 
 export default error;
